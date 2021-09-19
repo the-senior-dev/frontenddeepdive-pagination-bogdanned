@@ -1,6 +1,7 @@
 import React from 'react'
 import { Movie } from '../types'
 import MovieCard from './MovieCard'
+import styled from "styled-components"
 
 interface MovieListProps{
     movieList: Movie[]
@@ -8,10 +9,14 @@ interface MovieListProps{
 
 export default function MovieList({movieList}:MovieListProps) {
     return (
-        <div>
+        <MovieListContainer>
             {movieList.map((movie:Movie) => {
                 return <MovieCard key={movie.imdbID} movie={movie}></MovieCard>
             })}
-        </div>
+        </MovieListContainer>
     )
 }
+
+const MovieListContainer = styled.div`
+    margin-bottom: 4rem;
+`

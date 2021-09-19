@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import styled,{css} from "styled-components"
+import React, { useState, useEffect } from 'react'
+import styled from "styled-components"
 
-import { Movie,FullApiResponse,ResponseStatus } from '../types'
+import { Movie, FullApiResponse, ResponseStatus } from '../types'
 import MovieList from './MovieList'
 import Pagination from './Pagination'
+import { buildListUrl } from "../utils/api"
 
 export default function MainPage() {
     const [movieList, setMovieList] = useState<Movie[]>([])
@@ -13,20 +14,20 @@ export default function MainPage() {
     const [error, setError] = useState("");
 
 
-    async function getMovies(){
-        const url = `http://www.omdbapi.com/?s=${searchText}&apikey=91545615&page=${currentPage}`
+    async function getMovies() {
+        const url = buildListUrl(searchText, currentPage)
         const response = await fetch(url)
-        
-        if(response.status === 200){
+
+        if (response.status === 200) {
             const data = await response.json() as FullApiResponse;
-            if(data.Response === ResponseStatus.True ){
+            if (data.Response === ResponseStatus.True) {
                 setMovieList(data.Search)
-                const pageTotalCalc = Math.ceil(parseInt(data.totalResults)/10);
+                const pageTotalCalc = Math.ceil(parseInt(data.totalResults) / 10);
                 setPageTotal(pageTotalCalc)
-            }else{
+            } else {
                 setError(data.Error)
             }
-        }else{
+        } else {
             // handle network error
             setError("network error")
         }
@@ -34,32 +35,74 @@ export default function MainPage() {
     }
 
     useEffect(() => {
-       getMovies()
+        getMovies()
     }, [currentPage]) // when current page changes, on did mount
 
     return (
-        <div>
-            <div>
-                <input placeholder="star wars" value={searchText} onChange={(event) => (setSearchText(event.target.value))}></input>
-                <Button onClick={() => (getMovies())}>Search</Button>
-            </div>
-            <MovieList movieList={movieList}/>
-            <Pagination pageTotal={pageTotal} currentPage={currentPage} setCurrentPage={setCurrentPage}></Pagination>
-        </div>
+        <MainContainer>
+            <Content>
+                <SearchContainer>
+                    <SearchInput placeholder="star wars" value={searchText} onChange={(event) => (setSearchText(event.target.value))}></SearchInput>
+                    <Button onClick={() => (getMovies())}>Search</Button>
+                </SearchContainer>
+                <MovieList movieList={movieList} />
+                <Pagination pageTotal={pageTotal} currentPage={currentPage} setCurrentPage={setCurrentPage}></Pagination>
+            </Content>
+
+        </MainContainer>
     )
 }
 
 
-const Button = styled.a`
-  /* This renders the buttons above... Edit me! */
+const SearchContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+`
+
+const SearchInput = styled.input`
+    width: 60%;
+    height: 30px;
+    padding-top: 0px;
+    padding-left: 4px;
+    padding-bottom: 0px;
+    border-width: 1px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #34495e;
+    :focus-visible{
+        border-radius: 0px;
+        border-color: #2980b9;
+        outline: none;
+    }
+`
+
+const Content = styled.div`
+  max-width: 860px;
+  margin-top: 4rem;
+  width: 100%;
+`
+
+
+const MainContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const Button = styled.button`
+  box-sizing: content-box;
   display: inline-block;
-  border-radius: 3px;
-  padding: 0.2rem;
-  margin: 0.5rem 1rem;
+  border-width: 0px;
+  border-color: #34ace0;
+  height: 30px;  
+  border-radius: 1px;
+  margin: 0rem 1rem;
   width: 11rem;
   background: #34ace0;
   color: white;
-  border: 2px solid white;
+  margin-left: 0px;
+  margin-right: 0px;
+  font-weight: 400;
   :hover{
     background: #227093;
     cursor: pointer;
