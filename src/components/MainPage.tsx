@@ -78,8 +78,9 @@ const SearchInput = styled.input`
 `
 
 const Content = styled.div`
-  max-width: 840px;
+  max-width: 860px;
   margin-top: 4rem;
+  width: 100%;
 `
 
 
