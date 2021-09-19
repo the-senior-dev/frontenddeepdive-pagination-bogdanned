@@ -39,17 +39,22 @@ export default function MainPage() {
     }, [currentPage]) // when current page changes, on did mount
 
     return (
-        <div>
+        <MainContainer>
             <div>
                 <input placeholder="star wars" value={searchText} onChange={(event) => (setSearchText(event.target.value))}></input>
                 <Button onClick={() => (getMovies())}>Search</Button>
             </div>
             <MovieList movieList={movieList}/>
             <Pagination pageTotal={pageTotal} currentPage={currentPage} setCurrentPage={setCurrentPage}></Pagination>
-        </div>
+        </MainContainer>
     )
 }
 
+
+const MainContainer = styled.div`
+  /* This renders the buttons above... Edit me! */
+  max-width: 960px;
+`
 
 const Button = styled.a`
   /* This renders the buttons above... Edit me! */
