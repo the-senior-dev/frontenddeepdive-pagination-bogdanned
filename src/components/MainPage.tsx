@@ -4,6 +4,7 @@ import styled,{css} from "styled-components"
 import { Movie,FullApiResponse,ResponseStatus } from '../types'
 import MovieList from './MovieList'
 import Pagination from './Pagination'
+import {buildUrl} from "../utils/api"
 
 export default function MainPage() {
     const [movieList, setMovieList] = useState<Movie[]>([])
@@ -14,7 +15,7 @@ export default function MainPage() {
 
 
     async function getMovies(){
-        const url = `http://www.omdbapi.com/?s=${searchText}&apikey=91545615&page=${currentPage}`
+        const url = buildUrl(searchText, currentPage)
         const response = await fetch(url)
         
         if(response.status === 200){
