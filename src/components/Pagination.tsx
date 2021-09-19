@@ -13,10 +13,10 @@ export default function Pagination({pageTotal, currentPage, setCurrentPage}:Pagi
     return (
         <PaginationContainer>
             <PaginationLimitButton data-testid="btn-first" onClick={() => (setCurrentPage(1))} disabled={currentPage == 1}>First</PaginationLimitButton>
-            <PaginationLimitButton data-testid="btn-first" onClick={() => (setCurrentPage(currentPage-1))} disabled={currentPage == 1}>Previous</PaginationLimitButton>
+            <PaginationLimitButton data-testid="btn-next" onClick={() => (setCurrentPage(currentPage-1))} disabled={currentPage == 1}>Previous</PaginationLimitButton>
 
             <p>Page {currentPage} of {pageTotal}</p>
-            <PaginationLimitButton data-testid="btn-first" onClick={() => (setCurrentPage(currentPage+1))} disabled={currentPage == pageTotal}>Next</PaginationLimitButton>
+            <PaginationLimitButton data-testid="btn-prev" onClick={() => (setCurrentPage(currentPage+1))} disabled={currentPage == pageTotal}>Next</PaginationLimitButton>
             <PaginationLimitButton data-testid="btn-last" onClick={() => (setCurrentPage(pageTotal))}  disabled={currentPage == pageTotal}>Last</PaginationLimitButton>
         </PaginationContainer>
     )
