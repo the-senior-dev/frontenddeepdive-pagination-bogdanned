@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Movie, FullApiResponse, ResponseStatus } from '../types'
 import MovieList from './MovieList'
 import Pagination from './Pagination'
-import { buildUrl } from "../utils/api"
+import { buildListUrl } from "../utils/api"
 
 export default function MainPage() {
     const [movieList, setMovieList] = useState<Movie[]>([])
@@ -15,7 +15,7 @@ export default function MainPage() {
 
 
     async function getMovies() {
-        const url = buildUrl(searchText, currentPage)
+        const url = buildListUrl(searchText, currentPage)
         const response = await fetch(url)
 
         if (response.status === 200) {

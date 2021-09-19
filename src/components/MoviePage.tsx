@@ -2,14 +2,15 @@ import React, {useState, useEffect} from 'react'
 import { Link, useParams } from "react-router-dom"
 import {ApiResponseGetMovie} from "../types"
 import styled from "styled-components"
+import { buildMovieUrl } from "../utils/api"
 
 export default function MoviePage() {
     const {id}:{id: string} = useParams();
     const [movieData, setMovieData] = useState<ApiResponseGetMovie|null>(null)
     const [error, setError] = useState<string|null>(null)
+    const url = buildMovieUrl(id)
 
     async function getMovie(){
-        const url = `http://www.omdbapi.com/?i=${id}&apikey=91545615`
         const response = await fetch(url)
         if(response.status === 200){
             const data = await response.json() as ApiResponseGetMovie;
