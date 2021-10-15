@@ -191,8 +191,7 @@ The MainPage component:
 The Movie Page:
 - a variable to store the movie data: movieData
 
-Typings // the types of the data coming from the API:
-- a variable to store the movie data: movieData
+Typings -- the types of the data coming from the API
 
 In `MoviePage.tsx`:
 ```diff
