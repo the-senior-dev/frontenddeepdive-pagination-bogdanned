@@ -444,7 +444,4 @@ const PageNumbersContainer = styled.div`
 3. Feel free to take the exercise further and experiment yourself with the setup
 
 
-// API KEY
-91545615
-
 ### Made with :orange_heart: in Berlin by @CodeWithDragos
