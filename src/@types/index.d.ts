@@ -8,7 +8,7 @@ declare enum ResponseStatus {
   "False" = "False",
 }
 
-declare type Movie = {
+type Movie = {
   Title: string;
   Year: string;
   imdbID: string;
