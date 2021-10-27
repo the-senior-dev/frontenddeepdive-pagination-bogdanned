@@ -2,7 +2,6 @@ import React from 'react'
 import {
     Link
   } from "react-router-dom";
-import {Movie} from "../types"
 import styled from "styled-components"
 
 interface MovieCardProps{
