@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
-
-import { Movie, FullApiResponse, ResponseStatus } from '../types'
+import { buildListUrl } from "../utils/api"
 import MovieList from './MovieList'
 import Pagination from './Pagination'
-import { buildListUrl } from "../utils/api"
 
 export default function MainPage() {
     const [movieList, setMovieList] = useState<Movie[]>([])

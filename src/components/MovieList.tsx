@@ -1,5 +1,4 @@
 import React from 'react'
-import { Movie } from '../types'
 import MovieCard from './MovieCard'
 import styled from "styled-components"
 

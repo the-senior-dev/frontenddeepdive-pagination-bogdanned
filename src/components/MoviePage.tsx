@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useParams } from "react-router-dom"
-import {ApiResponseGetMovie} from "../types"
 import styled from "styled-components"
 import { buildMovieUrl } from "../utils/api"
 
